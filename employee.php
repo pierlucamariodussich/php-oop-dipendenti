@@ -14,15 +14,16 @@ class Employee extends Person{
             $init_employee['surname'],
             $init_employee['fiscal_code']
         );
+        
         if(count($init_employee) < 4){
             throw new Exception("I campi name,surname,fiscal code e employee code sono obbligatori");
         }
-        if(strlen($init_employee['employee_code']) < 5){
-            throw new Exception("Il codice non contine 5 cifre");
+        if((strlen($init_employee['employee_code']) <= 5) && (!is_numeric($init_employee['employee_code']))){
+            throw new Exception("Il codice non contiene 5 cifre ");
         }
-        if(!is_numeric($init_employee['employee_code'])){
-            throw new Exception("Il codice deve essere un numero");
-        }
+        // if(!is_numeric($init_employee['employee_code'])){
+        //     throw new Exception("Il codice deve essere un numero");
+        // }
 
         $this->employee_code = $init_employee['employee_code'];
         $this->total_pay();
@@ -34,9 +35,10 @@ class Employee extends Person{
 
     public function to_string(){
         $string = parent::to_string();
-        $string.= " 
-                    Codice Inpiegato: ". $this->employee_code." |
-                    Compenso ".$this->pay."€";
+        $string .= <<<EOT
+        Codice impiegato : $this->employee_code |
+        Compenso : $this->pay €
+        EOT;
         return $string;
     }
 

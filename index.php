@@ -11,7 +11,7 @@ $employee_data = [
     'name' => 'Pinco',
     'surname' => 'Pallo',
     'fiscal_code' => 'PNCPLL78S15E472P',
-    'employee_code' => 10011
+    'employee_code' => 10010
  ];
 
 $salaried_employee = array_merge($employee_data, [
